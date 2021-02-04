@@ -8,7 +8,9 @@ public class Leetcode07 {
     public static void main(String[] args) {
         System.out.println(reverse(-123));
     }
-
+    /*
+        目前还不太懂
+     */
     public static int reverse(int x) {
         long res=0;
         while (x!=0)
