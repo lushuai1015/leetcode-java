@@ -18,10 +18,17 @@ public class Leetcode347 {
      */
     public static int[] topKFrequent(int[] nums, int k){
         Map<Integer,Integer> map = new HashMap<>();
-        for(int i=0;i<nums.length;i++){
-            map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+        for(int i:nums){
+            map.put(i,map.getOrDefault(i,0)+1);
         }
-        PriorityQueue<Map.Entry<Integer,Integer>> maxHeap = new PriorityQueue<>((o1, o2) -> o2.getValue()-o1.getValue());
+        //Map.Entry是map中的一个接口，可以getKey和getValue
+        PriorityQueue<Map.Entry<Integer,Integer>> maxHeap = new PriorityQueue<>(new Comparator<Map.Entry<Integer, Integer>>() {
+            @Override
+            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+                return o2.getValue()-o1.getValue();
+            }
+        });
+        //entrySet实现了Set接口，里面存放的是键值对
         maxHeap.addAll(map.entrySet());
         List<Integer> list = new ArrayList<>();
         for(int i=0;i<k;i++){
